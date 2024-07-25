@@ -7,10 +7,14 @@ const MovieSearch = () => {
   const [movieTitle, setMovieTitle] = useState("");
   const [movieData, setMovieData] = useState(null);
   const { watchlist, addToWatchlist, removeFromWatchlist } = useUserContext();
+  const [loading,setLoading] = useState(false);
+
  const [error, setError] = useState(null);
   const apiKey = "23946427"; // Api key i know in env variable to manage 
   
   const fetchMovieData = async () => {
+   setMovieData("");
+   setLoading(true);
     try {
       const response = await axios.get(
         `https://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`
@@ -22,9 +26,13 @@ const MovieSearch = () => {
         setMovieData("");
         setError("Movie not found");
       }
+     
     } catch (err) {
       console.error("Error fetching movie data");
       setError("Error fetching movie data");
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -38,8 +46,8 @@ const MovieSearch = () => {
   };
 
   return (
-    <div className="p-4">
-      <form onSubmit={handleSubmit} className="mb-4">
+    <div className="p-4  ">
+      <form onSubmit={handleSubmit} className="mb-4 text-center">
         <input
           type="text"
           value={movieTitle}
@@ -51,8 +59,12 @@ const MovieSearch = () => {
           Search
         </button>
       </form>
-      {error && <p className="text-red-500">{error}</p>}
+      
+      {loading && <p className="text-center">Loading ...</p>}
+      {error && <p className="text-red-500 text-center">{error}</p>}
+      <div className="flex justify-center">
       {movieData && (
+        
         <MovieCard
           movie={movieData}
           addToWatchlist={addToWatchlist}
@@ -60,6 +72,8 @@ const MovieSearch = () => {
           isWatchlist={isMovieInWatchlist(movieData)}
         />
       )}
+      </div>
+
     </div>
   );
 };

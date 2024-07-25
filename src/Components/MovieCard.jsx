@@ -7,7 +7,7 @@ const MovieCard = ({
   isWatchlist,
 }) => {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white ">
       <img
         className="w-full h-80"
         src={movie.Poster}

@@ -7,7 +7,7 @@ const Home = () => {
   const { logout } = useUserContext();
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <header className="flex justify-between items-center p-4 bg-blue-600 text-white">
         <div className="flex items-center space-x-4">
           <div className="text-xl font-bold">Movies Watch List</div>
@@ -24,7 +24,7 @@ const Home = () => {
 
       <MovieSearch />
       <Watchlist />
-      <footer className="bg-gray-200 py-4 text-center">
+      <footer className="bg-gray-200 py-4 text-center mt-auto">
         <p className="text-gray-600 text-sm">Movie WatchList App</p>
       </footer>
     </div>
