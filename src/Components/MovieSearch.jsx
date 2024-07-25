@@ -8,12 +8,12 @@ const MovieSearch = () => {
   const [movieData, setMovieData] = useState(null);
   const { watchlist, addToWatchlist, removeFromWatchlist } = useUserContext();
  const [error, setError] = useState(null);
-  const apiKey = "23946427";
-
+  const apiKey = "23946427"; // Api key i know in env variable to manage 
+  
   const fetchMovieData = async () => {
     try {
       const response = await axios.get(
-        `http://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`
+        `https://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`
       );
       if (response.data.Response === "True") {
         setMovieData(response.data);
