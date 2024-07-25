@@ -14,8 +14,15 @@ const MovieSearch = () => {
   
   const fetchMovieData = async () => {
    setMovieData("");
+   setError(null);
+
+   if(movieTitle.trim() === ""){
+    setError("Please Write A Movies Name");
+    return;
+   }
    setLoading(true);
-    try {
+
+   try {
       const response = await axios.get(
         `https://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`
       );

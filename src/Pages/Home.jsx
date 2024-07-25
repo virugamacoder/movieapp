@@ -4,7 +4,7 @@ import { useUserContext } from "../context/UserContext";
 import Watchlist from "../Components/Watchlist";
 
 const Home = () => {
-  const { logout } = useUserContext();
+  const { logout ,user } = useUserContext();
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -13,6 +13,9 @@ const Home = () => {
           <div className="text-xl font-bold">Movies Watch List</div>
         </div>
         <div className="flex items-center space-x-4">
+         <div>
+          {user.email}
+         </div> 
           <button
             onClick={logout}
             className="px-4 py-2 bg-white text-blue-600 font-bold rounded  transition duration-300"
